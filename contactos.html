@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto Belford Company</title>
+
+    <!-- Enlace para los íconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Barra de navegación fija */
+        nav {
+            background-color: #333;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: flex-start; /* Alinear elementos a la izquierda */
+            align-items: center;
+            padding: 5px 1px;
+            animation: slideDown 1s ease-in-out;
+        }
+
+        nav .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .brand a {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        nav .menu {
+            display: flex;
+            gap: 15px;
+            margin-left: 10px;
+        }
+
+        nav .menu a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        nav .menu a:hover {
+            background-color: #575757;
+        }
+
+        /* Carrito */
+        .cart {
+            margin-left: auto; /* Mover carrito al extremo derecho */
+            display: flex;
+            align-items: center;
+        }
+
+        .cart a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 18px;
+        }
+
+        .cart i {
+            font-size: 20px;
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav .menu {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            nav .menu.active {
+                display: flex;
+            }
+
+            nav .hamburger {
+                display: flex;
+            }
+
+            /* Carrito abajo y alineado con el menú en móvil */
+            .cart {
+                width: 100%;
+                padding: 10px 15px;
+                text-align: left;
+                margin-left: 0;
+            }
+        }
+
+        .content {
+            padding-top: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .contact-section-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .contact-form-section,
+        .map-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-form-section h2,
+        .map-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-form-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-form-section input,
+        .contact-form-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form-section button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form-section button:hover {
+            background-color: #575757;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+        }
+
+        #successMessage {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Animación de deslizar hacia abajo */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mostrar mensaje de éxito en el formulario
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                successMessage.textContent = '¡Felicidades! Ahora contactaremos contigo.';
+                successMessage.style.display = 'block';
+                form.reset();
+            });
+
+            // Funcionalidad del menú hamburguesa
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.querySelector('.menu');
+
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav>
+        <div class="brand">
+            <a href="index.html">BELFORD®</a>
+        </div>
+        <div class="menu">
+            <a href="index.html">Inicio</a>
+            <a href="Acerca de.html">Nosotros</a><a href="Productos.html">Productos</a>
+            <a href="contactos.html">Contacto</a><a href="Galeria.html">Galería</a>
+        </div>
+        <div class="cart">
+            <a href="carrito.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
+        </div>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Contenido -->
+    <div class="content">
+        <div class="contact-section-container">
+            <div class="contact-form-section">
+                <h2>Contáctanos</h2>
+                <form id="contactForm" method="POST">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+                <p id="successMessage"></p>
+            </div>
+            <div class="map-section">
+                <h2>Dirección de Sucursal</h2>
+                <p>AV Rivadavia 2293, CABA</p>
+                <iframe src="https://www.google.com/maps/embed?..."></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

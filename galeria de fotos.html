@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Galería de Fotos</title>
+<link rel="stylesheet" href="css/lightbox.min.css">
+<link rel="stylesheet" href="galeria-de-fotos.css">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Barra de navegación */
+    nav {
+        background-color: #333;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        color: white;
+    }
+
+    nav a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+        background-color: #575757;
+        transform: scale(1.1);
+    }
+
+    .cart i {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    /* Título de la galería */
+    .gallery-title {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* Estilos de la galería de imágenes */
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .gallery a {
+        display: block;
+        width: 100%;
+        max-width: 150px; /* Tamaño máximo para miniaturas en dispositivos pequeños */
+    }
+
+    .gallery img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s;
+        border-radius: 5px;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Estilos responsivos */
+    @media (min-width: 768px) {
+        .gallery a {
+            max-width: 200px; /* Tamaño mayor en pantallas medianas */
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .gallery a {
+            max-width: 250px; /* Tamaño mayor en pantallas grandes */
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<nav id="navbar">
+    <div class="nav-links">
+		
+        <a href="index.html">Inicio</a>
+        <a href="Acerca de.html">Acerca de</a>
+        <a href="Productos.html">Productos</a>
+        <a href="contactos.html">Contacto</a>
+        <a href="galeria de fotos.html">Galería</a>
+    </div>
+    <div class="cart">
+        <a href="carrito.html">
+            <i class="fas fa-shopping-cart"></i> Carrito
+        </a>
+    </div>
+</nav>
+
+<!-- Título de la galería -->
+<h1 class="gallery-title">Galería de Imágenes</h1>
+
+<!-- Galería de Imágenes -->
+<div class="gallery">
+    <!-- Miniaturas optimizadas con Lightbox -->
+    <a href="IMAGENES/remera-grande 1.jpg" data-lightbox="fotos" title="Imagen 1">
+        <img class="thumbnail" src="IMAGENES/remera-pequena 1.jpg" alt="Imagen 1">
+    </a>
+    <a href="IMAGENES/remera grande- 2.jpg" data-lightbox="fotos" title="Imagen 2">
+        <img class="thumbnail" src="IMAGENES/remera-pequena 2.jpg" alt="Imagen 2">
+    </a>
+    <a href="IMAGENES/remera- grande 3.jpg" data-lightbox="fotos" title="Imagen 3">
+        <img class="thumbnail" src="IMAGENES/remera pequena 3.jpg" alt="Imagen 3">
+    </a>
+    <a href="IMAGENES/remera- grande 4.jpg" data-lightbox="fotos" title="Imagen 4">
+        <img class="thumbnail" src="IMAGENES/remera- pequena 4.jpg" alt="Imagen 4">
+    </a>
+</div>
+
+<script src="js/lightbox-plus-jquery.min.js"></script>
+
+</body>
+</html>
+
+   

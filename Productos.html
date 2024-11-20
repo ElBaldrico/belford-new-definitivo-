@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Carrito de Compras</title>
+
+    <!-- Enlace para los íconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Barra de navegación fija */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+            transform: scale(1.1);
+        }
+
+        .cart {
+            float: right;
+            transition: transform 0.3s;
+        }
+
+        .cart:hover {
+            transform: scale(1.2);
+        }
+
+        .cart i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .content {
+            padding-top: 80px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Sección del carrito */
+        .cart-section {
+            padding: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* Diseño de la rejilla de productos */
+        .cart-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-content: center; /* Centra las columnas */
+            margin-bottom: 40px;
+        }
+
+        .cart-item {
+            background-color: white;
+            border: 2px solid #ccc; /* Bordes grises */
+            border-radius: 10px;
+            padding: 10px;
+            position: relative;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .cart-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilo para el precio sobre la imagen */
+        .cart-item .price {
+            font-size: 22px;
+            color: #4CAF50;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .cart-item img:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-item p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .cart-item .description {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .cart-item .sizes {
+            font-size: 14px;
+            color: #444;
+        }
+
+        /* Ventana emergente para mostrar detalles del producto */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            max-width: 500px;
+            width: 80%;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Estilo responsivo para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .cart-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-grid {
+                grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+            }
+        }
+    </style>
+
+    <script>
+        // Función para mostrar la ventana emergente con los detalles del producto
+        function showModal(productInfo) {
+            const modal = document.getElementById('productModal');
+            const modalContent = document.getElementById('modal-content');
+
+            // Rellenar el contenido del modal con la información del producto
+            modalContent.innerHTML = `
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>${productInfo.name}</h2>
+                <p><strong>Precio: $8.500</strong></p>
+                <p>Descripción: ${productInfo.description}</p>
+                <p>Calidad del algodón: ${productInfo.cottonQuality}</p>
+                <p>Tallas disponibles: ${productInfo.sizes}</p>
+            `;
+
+            modal.style.display = 'flex';
+        }
+
+        // Función para cerrar la ventana emergente
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav>
+		<a Text="BELFORD.html">BELFORD®</a>
+        <a href="index.html">Inicio</a>
+        <a href="Acerca de.html">Acerca de</a>
+        <a href="Productos.html">Productos</a>
+        <a href="contactos.html" onclick="mostrarNombre('Contacto')">Contacto</a>
+		<a href="galeria de fotos.html">Galeria</a>
+        <div class="cart">
+            <a href="carrito.html"><i class="fas fa-shopping-cart"></i>
+                Carrito</a>
+        </div>
+        <span id="nombreSeccion"></span>
+    </nav>
+
+    <!-- Sección de contenido -->
+    <div class="content">
+        <div class="cart-section">
+            <h1> Nuestros Productos</h1>
+
+            <!-- Grid de productos -->
+            <div class="cart-grid">
+                <div class="cart-item" onclick="showModal({
+                    name: 'Producto 1',
+                    description: 'Remera clásica de algodón, perfecta para uso diario.',
+                    cottonQuality: '24/1',
+                    sizes: 'S, M, L, XL'
+                })">
+                    <p class="price">$8.500</p>
+                    <img src="IMAGENES/foto belford remera 1 .png" alt="Producto 1">
+                    <p>Producto 1</p>
+                </div>
+                <div class="cart-item" onclick="showModal({
+                    name: 'Producto 2',
+                    description: 'Remera de tela suave y cómoda, ideal para verano.',
+                    cottonQuality: '30/1',
+                    sizes: 'M, L, XL'
+                })">
+                    <p class="price">$8.500</p>
+                    <img src="IMAGENES/belford foto 2 .png" alt="Producto 2">
+                    <p>Producto 2</p>
+                </div>
+                <div class="cart-item" onclick="showModal({
+                    name: 'Producto 3',
+                    description: 'Remera deportiva, diseñada para mayor frescura.',
+                    cottonQuality: '20/1',
+                    sizes: 'S, M, L'
+                })">
+                    <p class="price">$8.500</p>
+                    <img src="IMAGENES/belford foto 3 .png" alt="Producto 3">
+                    <p>Producto 3</p>
+                </div>
+                <div class="cart-item" onclick="showModal({
+                    name: 'Producto 4',
+                    description: 'Remera con estampado moderno, perfecta para salir.',
+                    cottonQuality: '24/1',
+                    sizes: 'S, M, L, XL'
+                })">
+                    <p class="price">$8.500</p>
+                    <img src="IMAGENES/remera productos 4.png" alt="Producto 4">
+                    <p>Producto 4</p>
+                </div>
+                <div class="cart-item" onclick="showModal({
+                    name: 'Producto 5',
+                    description: 'Remera de algodón orgánico, suave y ecológica.',
+                    cottonQuality: '30/1',
+                    sizes: 'M, L, XL'
+                })">
+                    <p class="price">$8.500</p>
+                    <img src="IMAGENES/remera prductos 5.png" alt="Producto 5">
+                    <p>Producto 5</p>
+                </div>
+                <div class="cart-item" onclick="showModal({
+                    name: 'Producto 6',
+                    description: 'Remera casual de corte regular, fácil de combinar.',
+                    cottonQuality: '20/1',
+                    sizes: 'S, M, L'
+                })">
+                    <p class="price">$8.500</p>
+                    <img src="IMAGENES/remera productos 6.png" alt="Producto 6">
+                    <p>Producto 6</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ventana emergente para mostrar los detalles del producto -->
+    <div id="productModal" class="modal">
+        <div id="modal-content" class="modal-content"></div>
+    </div>
+
+</body>
+</html>

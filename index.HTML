@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="BELFORD.COM.CSS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+		
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed; /* Fija la barra de navegación en la parte superior */
+            top: 0; /* Posición inicial en la parte superior de la pantalla */
+            width: 100%; /* Hace que la barra cubra todo el ancho de la pantalla */
+            z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+            transition: top 0.3s; /* Transición suave al mostrar/ocultar */
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Espacio entre elementos */
+            padding: 0 10px; /* Espaciado horizontal */
+        }
+
+        nav a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+            transform: scale(1.1);
+        }
+
+        .cart {
+            transition: transform 0.2s;
+        }
+
+        .cart:hover {
+            transform: scale(1.1);
+        }
+
+        .cart i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .search-section {
+            margin: 80px 20px 20px; /* Ajusta el margen superior para que el contenido no quede oculto bajo la barra */
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .search-icon {
+            padding: 10px;
+        }
+
+        /* Botón de hamburguesa */
+        .hamburger {
+            cursor: pointer;
+            font-size: 30px;
+            color: white;
+            margin-right: 15px; /* Espacio a la derecha del icono */
+            z-index: 1100; /* Asegura que el icono esté por encima de la barra */
+            position: fixed; /* Fija el icono de hamburguesa */
+            left: 10px; /* Alinea el icono a la izquierda */
+            top: 10px; /* Alinea el icono al top */
+            background-color: #333; /* Fondo del icono para que sea visible */
+            padding: 5px;
+            border-radius: 5px;
+            display: none; /* Oculto por defecto, se mostrará cuando se oculte la barra */
+        }
+
+        /* Contenedor de enlaces de navegación */
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-links">
+			<a Text="BELFORD.html">BELFORD®</a>
+            <a href="#inicio" onclick="mostrarNombre('Inicio')">Inicio</a>
+            <a href="Acerca de.html">Acerca de</a>
+            <a href="Productos.html">Productos</a>
+            <a href="contactos.html">Contacto</a>
+			<a href="galeria de fotos.html">Galeria</a>
+        </div>
+        <div class="cart">
+            <a href="carrito.html" onclick="mostrarNombre('Carrito')">
+                <i class="fas fa-shopping-cart"></i> Carrito
+            </a>
+        </div>
+    </nav>
+
+    <!-- Icono de hamburguesa fijo al lado izquierdo -->
+    <div class="hamburger" id="hamburgerMenu">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <div class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24">
+                    <path d="M796 960L530 694q-26 23-58.611 35.5T400 742q-117 0-198.5-81.5T120 462q0-117 81.5-198.5T400 182q117 0 198.5 81.5T680 462q0 33-12.5 65.611T632 586l266 266-102 108ZM400 662q83 0 141.5-58.5T600 462q0-83-58.5-141.5T400 262q-83 0-141.5 58.5T200 462q0 83 58.5 141.5T400 662Z"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Variable para rastrear la posición de desplazamiento anterior
+        let previousScrollPosition = window.pageYOffset;
+
+        // Referencias a la barra de navegación y el menú de hamburguesa
+        const navbar = document.getElementById("navbar");
+        const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+        // Función para mostrar/ocultar la barra de navegación según el desplazamiento
+        window.onscroll = function() {
+            let currentScrollPosition = window.pageYOffset;
+
+            if (previousScrollPosition > currentScrollPosition) {
+                // Mostrar la barra de navegación cuando se desplaza hacia arriba
+                navbar.style.top = "0";
+                hamburgerMenu.style.display = "none"; // Oculta el icono de hamburguesa
+            } else {
+                // Ocultar la barra de navegación cuando se desplaza hacia abajo
+                navbar.style.top = "-100px";
+                hamburgerMenu.style.display = "block"; // Muestra el icono de hamburguesa
+            }
+
+            previousScrollPosition = currentScrollPosition;
+        }
+
+        // Mostrar la barra de navegación al hacer clic en el icono de hamburguesa
+        hamburgerMenu.onclick = function() {
+            navbar.style.top = "0"; // Muestra la barra
+            hamburgerMenu.style.display = "none"; // Oculta el icono de hamburguesa
+        }
+    </script>
+
+    <header>
+        <video autoplay muted loop id="video-fondo">
+            <source src="IMAGENES/1093664-hd_1920_1080_30fps.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+        </video>
+        <div class="header-content container">
+            <h1>BELFORD COMPANY</h1>
+            <a href="#" class="btn-1">Información</a>
+            <p>En Belford, creemos que la moda debe ser tanto una expresión personal como una herramienta para vivir la aventura al máximo. ¡Vamos juntos a surfear la vida!</p>
+        </div>
+    </header>
+	
+	<div class="carousel">
+    <div class="carousel-inner">
+        <img src="IMAGENES/Comboland Retro Tee.jpg" alt="Imagen 1">
+        <img src="IMAGENES/Men Vintage SanOnofre Casual Print T-shirt.jpg" alt="Imagen 2">
+        <img src="IMAGENES/Mens Retro Vacation Surfing T-shirt.jpg" alt="Imagen 3">
+        <img src="IMAGENES/descarga.jpg" alt="Imagen 4">
+    </div>
+    <!-- Flechas de navegación -->
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+</div>
+	
+	
+
+    <section class="Remeras1">
+        <h2>Nuestra Calidad</h2>
+        <div class="galeria-content container">
+            <div class="Remeras1-group">
+                <div class="remera-item">
+                    <img src="IMAGENES/foto belford remera 1 .png" alt="Remera clásica" class="remera-img">
+                    <h3>Remera clásica</h3>
+                    <p>La remera clásica de un estampado a color es versátil y cómoda para el uso diario.</p>
+                </div>
+                <div class="remera-item">
+                    <img src="IMAGENES/belford foto 2 .png" alt="Remera clásica 2" class="remera-img">
+                    <h3>Remera clásica 2</h3>
+                    <p>La remera clásica de doble estampado a color ofrece modernidad y estilo.</p>
+                </div>
+                <div class="remera-item">
+                    <img src="IMAGENES/belford foto 3 .png" alt="Remera pima" class="remera-img">
+                    <h3>Remera Pima</h3>
+                    <p>Confeccionada en algodón Pima, ofrece una calidad y suavidad excepcionales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<iframe src="https://malesperoni.github.io/uintaconstrucciones/Anuncio.html" width="100%"  name="marco" frameborder="0" scrolling="no"></iframe>
+
+    <section class="features container">
+        <h2>Características de Nuestra Marca</h2>
+        <div class="features-group">
+            <div class="feature">
+                <i class="fas fa-paint-brush icon"></i>
+                <h3>Servicio de Estampado</h3>
+                <p>Ofrecemos un servicio de estampado de alta calidad para personalizar tu ropa.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-truck icon"></i>
+                <h3>Envíos Rápidos</h3>
+                <p>Realizamos envíos rápidos y seguros para que tus productos lleguen a tiempo.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-undo icon"></i>
+                <h3>Devoluciones Fáciles</h3>
+                <p>Ofrecemos un fácil proceso de devolución si no estás satisfecho con tu compra.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer-bar">
+        <div class="footer-content">
+            <div class="social-media">
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="contact-info">
+                <h4>Contacto</h4>
+                <p>Teléfono: +123 456 789</p>
+                <p>Email: contacto@belford.com</p>
+				
+            </div>
+            <div class="qr-code">
+                <h4>Escanea nuestro QR</h4>
+                <img src="imagenes-de-pag/qr-code.png" alt="Código QR">
+            </div>
+            <div class="help-section">
+                <h4>Ayuda</h4>
+                <a href="#">Preguntas Frecuentes</a>
+                <a href="#">Soporte Técnico</a>
+            </div>
+        </div>
+	
+	
+    <div class="presentation-box">
+        <a href="https://elbaldrico.github.io/nueva-presentacion-belford/" target="_blank" class="presentation-link">Presentación</a>
+    </div>
+</section>
+
+    <script src="script.js"></script>
+</body>
+</html>
